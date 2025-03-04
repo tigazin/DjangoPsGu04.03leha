@@ -1,0 +1,68 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1>Управление товарами</h1>
+
+<div class="h2-togl"><h2 id="toggle-add-product">Добавить товар</h2></div>
+<form  class="add_product" style="display: none;" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="add_product">Добавить</button>
+</form>
+
+<div class="h2-togl"><h2  id="toggle-product-list">Список товаров</h2></div>
+<div style="display: none;" class="edit_product">
+    <table>
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    <form method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button class="button-cus" type="submit" name="delete_product">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<style>
+    .h2-togl {
+        background-color: #464AAA;
+        height: 45px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        cursor: pointer;
+    }
+
+        .h2-togl h2 {
+            margin: 0px;
+        }
+</style>
+<script>$(document).ready(function () {
+        // Переключение видимости формы добавления пользователя
+        $('#toggle-add-product').on('click', function () {
+            $('.add_product').slideToggle();
+        });
+
+        // Переключение видимости таблицы пользователей
+    $('#toggle-product-list').on('click', function () {
+            $('.edit_product').slideToggle();
+        });
+    });</script>
+{% endblock %}

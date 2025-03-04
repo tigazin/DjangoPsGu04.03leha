@@ -1,0 +1,70 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1>Управление пользователями</h1>
+
+<div class="h2-togl"><h2 id="toggle-add-user">Добавить пользователя</h2></div>
+<form class="add_user" method="post" style="display: none;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="add_user">Добавить</button>
+</form>
+
+<div class="h2-togl"><h2 id="toggle-user-list">Список пользователей</h2></div>
+<div style="display: none;" class="edit_user">
+    <table >
+        <thead>
+            <tr>
+                <th>Имя пользователя</th>
+                <th>Email</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <form method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                        <button class="button-cus" type="submit" name="delete_user">Удалить</button>
+                    </form>
+                    <a class="button-cus  button-cus1" href="{% url 'edit_user' user.id %}">Изменить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<style>
+
+   
+    .h2-togl {
+        background-color: #464AAA;
+        height: 45px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        cursor: pointer;
+    }
+    .h2-togl h2{
+        margin:0px;
+    }
+</style>
+<script>$(document).ready(function () {
+        // Переключение видимости формы добавления пользователя
+        $('#toggle-add-user').on('click', function () {
+            $('.add_user').slideToggle();
+        });
+
+        // Переключение видимости таблицы пользователей
+        $('#toggle-user-list').on('click', function () {
+            $('.edit_user').slideToggle();
+        });
+    });</script>
+{% endblock %}

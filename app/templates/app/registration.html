@@ -1,0 +1,25 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h2>Регистрация пользователя</h2>
+<form class="form-reg" method="post">
+    <div>
+        {% csrf_token %}
+        {{ regform.as_p }}
+        <button class="reg-b" type="submit" class="save btn btn-defauldt">Зарегистрировать</button>
+    </div>
+</form>
+<style>
+    .form-reg {
+        background-color: #58A5E3;
+        border-radius: 15px;
+        padding: 10px;
+    }
+    .reg-b{
+        background-color:white;
+        border:1px solid gray;
+        border-radius:10px;
+    }
+</style>
+
+{% endblock %}

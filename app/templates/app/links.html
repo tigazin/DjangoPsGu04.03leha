@@ -1,0 +1,29 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %}
+<div class="container">
+    <div class="resource_box">
+        <a href="https://ucozmarket.ru/prodazha_shablonov" class="resource img-box"><img class="img-3" src="{% static 'app/content/img/logo1.svg' %}" alt="Alternate Text" /> <div class="text">Ucoz market</div></a>
+        <a href="https://www.reg.ru/web-sites/all" class="resource img-box"><img class="img-3 img-2" src="{% static 'app/content/img/logo2.png' %}" alt="Alternate Text" /><div class="text">Рег ру</div></a>
+        <a href="https://ru.wordpress.org/" class="resource img-box"><img class="img-3"  src="{% static 'app/content/img/logo3.webp' %}" alt="Alternate Text" /><div class="text">вордпресс</div></a>
+    </div>
+</div>
+<style>
+    .img-box{
+        height:200px;
+    }
+    .img-2 {
+        height: 80px;
+        margin-top:50px;
+    }
+    .resource .text{
+        margin-top:auto;
+    }
+    .resource {
+        border:1px solid gray;
+        border-radius:15px;
+        padding:5px;
+    }
+</style>
+{% endblock %}

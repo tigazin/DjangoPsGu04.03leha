@@ -1,0 +1,13 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1>Редактировать пользователя: {{ user.username }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить изменения</button>
+</form>
+
+<a href="{% url 'manage_users' %}">Назад к списку пользователей</a>
+{% endblock %}

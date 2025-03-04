@@ -1,0 +1,82 @@
+{% extends "app/layout.html" %}
+{% block content %}
+    {% if form is not None %}
+<h2>Пожалуйста, заполните форму обратной связи</h2>
+<div class="form-co">
+    <form class="form-fed" method="post">
+        {% csrf_token %}
+        <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label><br>
+        {{ form.name }}<br><br>
+
+        <label for="{{ form.city.id_for_label }}">{{ form.city.label }}</label><br>
+        {{ form.city }}<br><br>
+
+        <label for="{{ form.product.id_for_label }}">{{ form.product.label }}</label><br>
+        {{ form.product }}<br><br>
+
+        <label for="{{ form.rating.id_for_label }}">{{ form.rating.label }}</label><br>
+        {{ form.rating }}<br><br>
+
+        <label for="{{ form.usage.id_for_label }}">{{ form.usage.label }}</label><br>
+        {{ form.usage }}<br><br>
+
+        <label for="{{ form.subscribe.id_for_label }}">{{ form.subscribe.label }}</label><br>
+        {{ form.subscribe }}<br><br>
+
+        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label><br>
+        {{ form.email }}<br><br>
+
+        <label for="{{ form.message.id_for_label }}">{{ form.message.label }}</label><br>
+        {{ form.message }}<br><br>
+
+        <input class="submit" type="submit" value="Отправить">
+    </form>
+</div>
+    {% else %}
+<h2>Спасибо за ваш отзыв!</h2>
+<ul class="ul-fed">
+    <li><span>Имя:</span> {{ data.name }}</li>
+    <li><span>Город:</span> {{ data.city }}</li>
+    <li><span>Шаблон:</span> {{ data.product }}</li>
+    <li><span>Оценка:</span> {{ data.rating }}</li>
+    <li><span>Использование:</span> {{ data.usage }}</li>
+    <li><span>Подписка на новости:</span> {{ data.subscribe }}</li>
+    <li><span>Email:</span> {{ data.email }}</li>
+    <li><span>Сообщение:</span> {{ data.message }}</li>
+</ul>
+
+    {% endif %}
+<style>
+    .form-co {
+        background-color: #464AAA;
+        border-radius: 15px;
+        padding: 15px;
+
+    }
+    .form-fed {
+        width:400px;
+    }
+    .form-fed textarea{
+        width:500px;
+    }
+    .form-fed ul li{
+        text-decoration:none;
+        list-style:none;
+    }
+</style>
+<script>
+    $('.submit').on("mouseenter", function () {
+        $(this).css("background-color", "yellow").css("color", "red");
+    });
+    $('.submit').on("mouseleave", function () {
+        $(this).css("background-color", "white").css("color", "black");
+    });
+    $('input').on("focus", function () {
+        $(this).css("background-color", "yellow").css("color", "red");
+    });
+    $('input').on("focusout", function () {
+        $(this).css("background-color", "white").css("color", "black");
+    });
+
+</script>
+{% endblock %}

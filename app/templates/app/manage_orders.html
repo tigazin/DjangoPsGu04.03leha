@@ -1,0 +1,36 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<h1>Управление заказами</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Заказ ID</th>
+            <th>Пользователь</th>
+            <th>Тип заказа</th>
+            <th>Дата создания</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td><a href="{% url 'order_detail' order.id %}">{{ order.id }}</a></td>
+            <td>{{ order.user.username }}</td>
+            <td>{{ order.get_order_type_display }}</td>
+            <td>{{ order.created_at }}</td>
+            <td>
+                <form method="post" action="{% url 'manage_orders' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="order_id" value="{{ order.id }}">
+                    <button type="submit" name="delete_order" class="button-cus">Удалить</button>
+                    {% if order.order_type == 'in_progress' %}
+                    <button type="submit" name="mark_completed" class="button-cus">Закрыть заказ</button>
+                    {% endif %}
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

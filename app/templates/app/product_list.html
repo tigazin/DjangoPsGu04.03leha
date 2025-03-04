@@ -1,0 +1,38 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1>Каталог товаров</h1>
+<div class="products">
+    {% for product in products %}
+    <div class="product-card">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+        <p><strong>Цена:</strong> {{ product.price }} руб.</p>
+        <form method="post" action="{% url 'add_to_cart' product.id %}">
+            {% csrf_token %}
+            <button class="button-cus" type="submit">Добавить в корзину</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+<style>
+    .products{
+        display:flex;
+        gap:5px;
+    }
+    .product-card {
+
+        margin: 5px 0px;
+        background-color: #464AAA;
+        padding: 15px;
+        box-sizing:border-box;
+        border-radius:15px;
+    }
+    .product-card img{
+        width:200px;
+        height:200px;
+    }
+    
+</style>
+{% endblock %}

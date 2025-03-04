@@ -1,0 +1,135 @@
+body {
+    margin:0px;
+    padding:0px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+/*жесть*/
+.navbar-brand{
+    width:125px;
+    height:100%;
+    position:relative;
+}
+.navbar-brand img {
+    display: block;
+    position: absolute;
+    left: 1px;
+    top:-10px;
+    width: 125px;
+    height: 75px;
+}
+
+.resource_box {
+    width: 500px;
+    height: 250px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+.resource{
+    width:149px;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+
+}
+
+.img-3 {
+    width: 100%;
+    height: 200px;
+}
+    .resource .text {
+        text-align:center;
+    }
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    margin: 10px auto;
+    overflow: hidden;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+}
+
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    display:none;
+}
+
+.control {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    .control:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    a{
+        color:black;
+    }

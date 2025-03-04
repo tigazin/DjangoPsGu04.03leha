@@ -1,0 +1,20 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+
+
+<address>
+    Ул.Ленина<br />
+    д.55<br />
+    <abbr title="Телефон">Телефон:</abbr>
+    8-911-666-33-22
+</address>
+
+<address>
+    <strong>Помощь:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Маркетинг:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>
+<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5633eda145d92dfa177ae0a66c044f3bd130587f4ae8c44f2e1482cd9b01fec9&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+{% endblock %}

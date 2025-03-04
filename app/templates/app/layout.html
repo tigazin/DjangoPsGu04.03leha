@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - My Django Application</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+</head>
+
+<body>
+    <div class="navbar-cus">
+
+
+        <a href="/" class="logo-main"><div> <img src="{% static 'app/content/img/logo.png' %}" alt="logo" /></div> </a>
+
+
+        <ul class="ul-head">
+            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li><a href="{% url 'about' %}">О нас</a></li>
+            <li><a href="{% url 'contact' %}">Контакты</a></li>
+            <li><a href="{% url 'links' %}">Полезные ресурсы</a></li>
+            <li><a href="{% url 'feedback' %}">Обратная связь</a></li>
+            <li><a href="{% url 'blog' %}">Блог</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'product_list' %}">Каталог</a></li>
+            {% endif %}
+            {%if user.is_superuser or is_manager_or_admin%}
+            <li>
+                <a href="{%url 'newpost'%}">Добавить статью</a>
+            </li>
+            <li>
+                <a href="{%url 'manage_products'%}">Управление товарами</a>
+            </li>
+            <li>
+                <a href="{%url 'manage_orders'%}">Управление заказами</a>
+            </li>
+            {% endif %}
+            {%if user.is_superuser or is_admin%}
+            <li>
+                <a href="{%url 'manage_users'%}">Управление пользователями</a>
+            </li>
+            {% endif %}
+
+            <li><a href="{%url 'videopost'%}">Видео</a></li>
+            {% if not user.is_authenticated %}
+            <li><a href="{% url 'registration' %}">Регистрация</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <li class="img-li">
+                <a href="{%url 'cart'%}">корзина <img class="img-head" src="{% static 'app/content/img/cart.png' %}" alt="Alternate Text" /></a>
+            </li>
+            {% endif %}
+        </ul>
+        {% include 'app/loginpartial.html' %}
+       
+
+    </div>
+
+    <div class="container-cus">
+{% block content %}{% endblock %}
+       
+      
+    </div>
+    <style>
+        .button-cus {
+            border: none;
+            border-radius: 25px;
+            background-color: #58A5E3;
+            color:white;
+        }
+        input:focus {
+            outline: none;
+            border: 1px solid gray;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border: 1px solid gray;
+        }
+        input {
+            border: 1px solid gray;
+            border-radius: 15px;
+            padding-left: 10px;
+        }
+        textarea {
+            border: 1px solid gray;
+            border-radius: 15px;
+            padding-left:10px;
+        }
+        #id_image {
+            border: none
+        }
+        .img-li{
+            display:flex;
+           
+        
+            }
+        .img-head{
+            width:25px;
+            height:25px;
+           
+        }
+        
+        
+        div, h1, h2, h3 {
+            color: white;
+        }
+        .NV{
+            width:1200px;
+            margin:0 auto;
+        }
+        body {
+            background-color: #506BCB;
+        }
+        .Orange {
+            background-color: #569edd;
+            border-color: #569edd;
+        }
+        .navbar-cus {
+            float: left;
+            height: 100vh;
+            width: 250px;
+            background-color: #304059;
+            position: fixed;
+        }
+        .container-cus {
+            margin-left: 250px;
+            width:calc(100vw - 295px);
+            
+            padding-left:15px;
+            padding-top:15px;
+            box-sizing:border-box;
+        }
+        .ul-head{
+            width:100%;
+            display:flex;
+            flex-direction:column;
+            padding:0px;
+            
+
+        }
+            .ul-head li {
+                list-style: none;
+                width: 100%;
+                font-size: 20px;
+                border-bottom: 1px solid #58A5E3;
+                
+            }
+                .ul-head li:hover {
+                    background-color: #58A5E3;
+
+                }
+            .ul-head a {
+                color: white;
+                padding-left: 15px;
+                width: 100%;
+                display:block;
+                text-decoration:none;
+            }
+            .logo-main {
+                width: 100%;
+                height: 85px;
+                display: block;
+            }
+        .logo-main div{
+
+            width:150px;
+            height:100px;
+           margin:0 auto;
+        }
+        .logo-main img{
+            width:100%;
+            height:100%;
+        }
+        .nav-content{
+            width:200px;
+           
+            margin:0 auto;
+        }
+
+        .logoutForm {
+            position: absolute;
+            width:100%;
+            bottom: 15px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .log-out{
+            color:white;
+        }
+        .log-in {
+            position: absolute;
+            width: 100%;
+            bottom: 15px;
+            color:white;
+            text-align:center;
+        }
+        .edit_user a {
+            padding: 3px;
+            text-decoration: none;
+        }
+        .edit_user a:hover {
+            color:white;
+        }
+    </style>
+    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+    <script src="{% static 'app/scripts/respond.js' %}"></script>
+{% block scripts %}
+    {% endblock %}
+
+</body>
+</html>
